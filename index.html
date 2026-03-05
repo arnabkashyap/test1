@@ -7,17 +7,94 @@
     <title>Happy Birthday Deha ❤️</title>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Dancing+Script:wght@700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap"
         rel="stylesheet">
 
     <style>
+        :root {
+            --primary-color: #00ffcc;
+            /* Cyber Teal */
+            --secondary-color: #ff0055;
+            /* Cyber Pink */
+            --bg-color: #050505;
+            --terminal-green: #00ff41;
+            --glass-bg: rgba(0, 255, 204, 0.05);
+            --glass-border: rgba(0, 255, 204, 0.2);
+            --text-color: #e0e0e0;
+        }
+
         body {
             margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
-            color: white;
+            font-family: 'Share Tech Mono', monospace;
+            background: var(--bg-color);
+            color: var(--text-color);
             text-align: center;
             overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Scanline Effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 200;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        /* Flicker Animation */
+        @keyframes flicker {
+            0% {
+                opacity: 0.97;
+            }
+
+            5% {
+                opacity: 0.95;
+            }
+
+            10% {
+                opacity: 0.9;
+            }
+
+            15% {
+                opacity: 0.95;
+            }
+
+            20% {
+                opacity: 0.97;
+            }
+
+            45% {
+                opacity: 0.97;
+            }
+
+            50% {
+                opacity: 0.9;
+            }
+
+            100% {
+                opacity: 0.97;
+            }
+        }
+
+        .crt {
+            animation: flicker 0.15s infinite;
+        }
+
+        #stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
         }
 
         section {
@@ -27,99 +104,213 @@
             justify-content: center;
             align-items: center;
             padding: 40px 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .terminal-container {
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
+            max-width: 800px;
+            width: 90%;
+            text-align: left;
+            position: relative;
+        }
+
+        .terminal-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 25px;
+            background: var(--primary-color);
+            color: #000;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 0.8rem;
         }
 
         h1 {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .romantic-text {
             font-family: 'Dancing Script', cursive;
             font-size: 3rem;
-            margin-bottom: 20px;
+            color: var(--secondary-color);
+            text-transform: none;
+            letter-spacing: normal;
+            text-shadow: 0 0 15px var(--secondary-color);
+        }
+
+        .log-entry {
+            margin: 5px 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .log-entry span {
+            color: var(--primary-color);
         }
 
         button {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 30px;
-            background: #ff4e8b;
-            color: white;
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px 20px;
+            font-family: 'Share Tech Mono', monospace;
             font-size: 1rem;
             cursor: pointer;
             transition: 0.3s;
-            margin: 10px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
         }
 
         button:hover {
-            background: #ff1e6b;
-            transform: scale(1.1);
+            background: var(--primary-color);
+            color: #000;
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        .glitch-btn {
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        .glitch-btn:hover {
+            background: var(--secondary-color);
+            box-shadow: 0 0 20px var(--secondary-color);
         }
 
         .hidden {
-            display: none;
+            display: none !important;
         }
 
-        .fade {
-            animation: fadeIn 2s ease forwards;
-            opacity: 0;
+        /* Countdown Grid */
+        #countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 30px;
         }
 
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
+        .countdown-item {
+            border: 1px solid var(--primary-color);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .countdown-val {
+            font-size: 2.5rem;
+            display: block;
+            color: var(--primary-color);
+        }
+
+        .countdown-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-color);
+            opacity: 0.6;
+        }
+
+        /* Memories Grid */
+        .memories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .memory-cell {
+            position: relative;
+            height: 200px;
+            border: 1px solid var(--glass-border);
+            overflow: hidden;
+            transition: 0.5s;
+        }
+
+        .memory-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) brightness(0.8);
+            transition: 0.5s;
+        }
+
+        .memory-cell:hover img {
+            filter: grayscale(0%) brightness(1.2);
+            transform: scale(1.1);
+        }
+
+        .memory-cell::after {
+            content: "[ VIEW_DATA ]";
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            font-size: 0.6rem;
+            color: var(--primary-color);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2px 5px;
         }
 
         .heart {
             position: fixed;
             top: -10px;
             animation: fall linear infinite;
-            font-size: 20px;
+            pointer-events: none;
+            z-index: 10;
+            font-family: Arial;
         }
 
         @keyframes fall {
-            to {
-                transform: translateY(110vh);
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
             }
         }
 
-        .slideshow {
-            position: relative;
-            width: 90%;
-            max-width: 400px;
-            height: 500px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
-        }
-
-        .slideshow img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            position: absolute;
-            left: 100%;
-            transition: left 1s ease-in-out;
-        }
-
-        .slideshow img.active {
-            left: 0;
-        }
-
-        .slideshow img.last {
-            left: -100%;
-        }
-
-        #countdown {
-            font-size: 2rem;
+        #typewriter {
+            font-size: 1.1rem;
+            line-height: 1.6;
             margin-top: 20px;
+            border-left: 2px solid var(--primary-color);
+            padding-left: 15px;
         }
 
-        canvas {
-            position: fixed;
-            pointer-events: none;
+        .status-bar {
+            margin-top: 30px;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 10px;
+            font-size: 0.7rem;
+            display: flex;
+            justify-content: space-between;
+            color: var(--primary-color);
         }
     </style>
 </head>
 
-<body>
+<body class="crt">
+
+    <canvas id="stars"></canvas>
 
     <audio id="music" loop preload="auto">
         <source src="your-music.mp3" type="audio/mpeg">
@@ -127,91 +318,148 @@
 
     <!-- INTRO -->
     <section id="intro">
-        <h1>Before I say Happy Birthday, Deha…</h1>
-        <p>I need you to know something from my heart.</p>
-        <button id="startBtn">Open My Heart 💌</button>
+        <div class="terminal-container">
+            <div class="terminal-header">HEART_OS V2.0 // DEHA_SURPRISE_MODULE</div>
+            <div id="intro-logs">
+                <div class="log-entry">> INITIALIZING LOVE_CORE... <span>[DONE]</span></div>
+                <div class="log-entry">> SCANNING MEMORY_DRIVES... <span>[12_ENTRIES_FOUND]</span></div>
+                <div class="log-entry">> SECURITY_CLEARANCE: <span>ARNAB_LEVEL_1</span></div>
+                <div class="log-entry">> TARGET_ENTITY: <span>DEHA</span></div>
+            </div>
+            <h1 style="margin-top: 30px;">Accessing Birthday Sequence...</h1>
+            <p>> System state: Waiting for user authorization to proceed with "Special_Day.exe"</p>
+            <button id="startBtn">[ EXECUTE INITIALIZATION ]</button>
+        </div>
     </section>
 
     <!-- COUNTDOWN -->
     <section id="countSection" class="hidden">
-        <h1>Counting the seconds until my queen’s day 👑</h1>
-        <div id="countdown"></div>
+        <div class="terminal-container">
+            <div class="terminal-header">UPLINK_ESTABLISHED // TARGET_DATE: FEB_27_2026</div>
+            <h1>B-DAY UPLINK STATUS:</h1>
+            <div id="countdown"></div>
+            <div class="status-bar">
+                <span>SIGNAL: STABLE</span>
+                <span>LATENCY: 0ms</span>
+                <span>CONNECTION: SECURE</span>
+            </div>
+        </div>
     </section>
 
     <!-- MAIN -->
     <section id="main" class="hidden">
-        <h1>Happy Birthday, Deha ❤️</h1>
-        <p>
-            You are not just a year older today…<br>
-            You are a year more beautiful,<br>
-            a year more precious,<br>
-            and a year deeper in my heart.
-        </p>
+        <div class="terminal-container">
+            <div class="terminal-header">SYSTEM_MESSAGE // URGENT_NOTIFICATION</div>
+            <h1 class="romantic-text">Happy Birthday, Deha ❤️</h1>
+            <div class="log-entry">> WARNING: EMOTIONAL_LEVELS EXCEEDING SYSTEM CAPACITY.</div>
+            <div class="log-entry">> ANALYSIS: You are the core processor of my happiness.</div>
+            <p style="margin-top:20px;">
+                > DEHA_ENTITY_REPORT:<br>
+                - AGE: +1 YEAR_WISER<br>
+                - BEAUTY: OVERFLOW_ERROR<br>
+                - IMPORTANCE: ABSOLUTE_MAXIMIZED
+            </p>
+        </div>
     </section>
 
-    <!-- SLIDESHOW -->
+    <!-- SLIDESHOW (Grid Style) -->
     <section id="memories" class="hidden">
-        <h1>Our Beautiful Memories 📸</h1>
-        <div class="slideshow">
-            <img src="img1.jpeg" class="active">
-            <img src="img2.jpeg">
-            <img src="img3.jpeg">
-            <img src="img4.jpeg">
-            <img src="img5.jpeg">
-            <img src="img6.jpeg">
-            <img src="img7.jpeg">
-            <img src="img8.jpeg">
-            <img src="img9.jpeg">
-            <img src="img10.jpeg">
-            <img src="img11.jpeg">
-            <img src="img12.jpeg">
+        <div class="terminal-container">
+            <div class="terminal-header">ARCHIVE_ACCESS // MEMORY_DATABASE</div>
+            <h1>Encrypted Memories:</h1>
+            <div class="memories-grid">
+                <div class="memory-cell"><img src="img1.jpeg"></div>
+                <div class="memory-cell"><img src="img2.jpeg"></div>
+                <div class="memory-cell"><img src="img3.jpeg"></div>
+                <div class="memory-cell"><img src="img4.jpeg"></div>
+                <div class="memory-cell"><img src="img5.jpeg"></div>
+                <div class="memory-cell"><img src="img6.jpeg"></div>
+                <div class="memory-cell"><img src="img7.jpeg"></div>
+                <div class="memory-cell"><img src="img8.jpeg"></div>
+                <div class="memory-cell"><img src="img9.jpeg"></div>
+                <div class="memory-cell"><img src="img10.jpeg"></div>
+                <div class="memory-cell"><img src="img11.jpeg"></div>
+                <div class="memory-cell"><img src="img12.jpeg"></div>
+            </div>
+            <div class="status-bar" style="margin-top: 15px;">
+                <span>DB_SYNC: 100%</span>
+                <span>DATA_STREAM: ACTIVE</span>
+            </div>
         </div>
     </section>
 
     <!-- REASONS -->
     <section id="reasons" class="hidden">
-        <h1>Why I Love You, Deha 💖</h1>
-        <button onclick="show('r1')">Your Smile</button>
-        <button onclick="show('r2')">Your Heart</button>
-        <button onclick="show('r3')">Your Voice</button>
+        <div class="terminal-container">
+            <div class="terminal-header">CORE_LOGIC // LOVE_PARAMETERS</div>
+            <h1>Query: Why_Deha?</h1>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <button onclick="showReason('r1')">[ SMILE_ANALYSIS ]</button>
+                <button onclick="showReason('r2')">[ HEART_DIAGNOSTIC ]</button>
+                <button onclick="showReason('r3')">[ VOICE_FREQUENCY ]</button>
+                <button onclick="showReason('r4')">[ SOUL_WAVELENGTH ]</button>
+            </div>
 
-        <p id="r1" class="hidden fade">Your smile heals my worst days and lights up my darkest nights.</p>
-        <p id="r2" class="hidden fade">Your heart is the safest place I have ever known.</p>
-        <p id="r3" class="hidden fade">Your voice is my favorite sound in this entire world.</p>
+            <div id="reason-output"
+                style="margin-top: 30px; min-height: 50px; border: 1px dashed var(--primary-color); padding: 15px;">
+                <p id="r-status">> SELECT PARAMETER TO ANALYZE...</p>
+                <p id="r1" class="hidden" style="color: var(--primary-color);">RESULT: Your smile is the only source
+                    code that can resolve all my issues instantly.</p>
+                <p id="r2" class="hidden" style="color: var(--primary-color);">RESULT: Heart detected. Warmth: Infinite.
+                    Safe_Place: Confirmed.</p>
+                <p id="r3" class="hidden" style="color: var(--primary-color);">RESULT: Voice pattern optimized for
+                    maximum comfort and peace.</p>
+                <p id="r4" class="hidden" style="color: var(--primary-color);">RESULT: Purest entity found. Soul
+                    architecture is beyond human comprehension.</p>
+            </div>
+        </div>
     </section>
 
     <!-- LETTER -->
     <section id="letter" class="hidden">
-        <h1>A Letter To You 💌</h1>
-        <p id="typewriter"></p>
+        <div class="terminal-container">
+            <div class="terminal-header">DECRYPTED_MESSAGE // FROM_ARNAB_CORE</div>
+            <div id="typewriter"></div>
+            <button id="giftBtn" class="glitch-btn hidden">> [ EXECUTE FINAL_SURPRISE ]</button>
+            <div class="status-bar">
+                <span>ENCRYPTION: NONE</span>
+                <span>SENDER: ARNAB</span>
+            </div>
+        </div>
     </section>
 
     <canvas id="confetti"></canvas>
 
     <script>
-        console.log("Birthday Site Script Loaded ✅");
+        console.log("Heart_OS v2.0 // DEHA_EDITION 🚀");
 
         document.getElementById("startBtn").addEventListener("click", function () {
-            console.log("Start Button Clicked!");
             const music = document.getElementById("music");
-            music.volume = 0.7;
+            music.volume = 0.5;
+            try { music.play(); } catch (err) { }
 
-            try {
-                music.play().catch(e => console.log("Music play blocked or failed:", e));
-            } catch (err) {
-                console.log("Music play error:", err);
-            }
+            this.innerHTML = "INITIALIZING...";
+            this.disabled = true;
 
-            document.getElementById("intro").classList.add("hidden");
-            document.getElementById("countSection").classList.remove("hidden");
+            setTimeout(() => {
+                const intro = document.getElementById("intro");
+                intro.style.transition = "all 0.5s ease";
+                intro.style.filter = "blur(10px) brightness(2)";
+                intro.style.opacity = "0";
 
-            startCountdown();
+                setTimeout(() => {
+                    intro.classList.add("hidden");
+                    const countSection = document.getElementById("countSection");
+                    countSection.classList.remove("hidden");
+                    startCountdown();
+                }, 500);
+            }, 1000);
+
+            createStars();
             createHearts();
-
         });
 
         function startCountdown() {
-
             let countDate = new Date("February 27, 2026 00:00:00").getTime();
 
             let x = setInterval(function () {
@@ -223,116 +471,118 @@
                 let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                document.getElementById("countdown").innerHTML =
-                    days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+                document.getElementById("countdown").innerHTML = `
+                    <div class="countdown-item"><span class="countdown-val">${days}</span><span class="countdown-label">Days</span></div>
+                    <div class="countdown-item"><span class="countdown-val">${hours}</span><span class="countdown-label">Hours</span></div>
+                    <div class="countdown-item"><span class="countdown-val">${minutes}</span><span class="countdown-label">Mins</span></div>
+                    <div class="countdown-item"><span class="countdown-val">${seconds}</span><span class="countdown-label">Secs</span></div>
+                `;
 
                 if (distance < 0) {
                     clearInterval(x);
-                    document.getElementById("countSection").classList.add("hidden");
-                    document.getElementById("main").classList.remove("hidden");
-                    document.getElementById("memories").classList.remove("hidden");
-                    document.getElementById("reasons").classList.remove("hidden");
-                    document.getElementById("letter").classList.remove("hidden");
-                    startSlideshow();
-                    typeWriter();
-                    confettiEffect();
+                    showMainCelebration();
                 }
             }, 1000);
         }
 
-        function show(id) {
-            document.getElementById(id).classList.toggle("hidden");
+        function showMainCelebration() {
+            document.getElementById("countSection").classList.add("hidden");
+            const sections = ["main", "memories", "reasons", "letter"];
+            sections.forEach(id => document.getElementById(id).classList.remove("hidden"));
+            typeWriter();
+            startConfetti();
+        }
+
+        function showReason(id) {
+            document.getElementById("r-status").style.display = "none";
+            const reasons = ['r1', 'r2', 'r3', 'r4'];
+            reasons.forEach(r => {
+                const el = document.getElementById(r);
+                if (r === id) {
+                    el.classList.remove("hidden");
+                    el.style.display = "block";
+                } else {
+                    el.classList.add("hidden");
+                    el.style.display = "none";
+                }
+            });
+        }
+
+        function createStars() {
+            const canvas = document.getElementById("stars");
+            const ctx = canvas.getContext("2d");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const stars = [];
+            for (let i = 0; i < 150; i++) {
+                stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, size: Math.random() * 2, speed: Math.random() * 0.2 });
+            }
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "#00ffcc";
+                stars.forEach(s => {
+                    ctx.beginPath(); ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2); ctx.fill();
+                    s.y += s.speed; if (s.y > canvas.height) s.y = 0;
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
         }
 
         function createHearts() {
+            const items = ["❤️", "01", "10", "💖", "EXE"];
             setInterval(() => {
                 let heart = document.createElement("div");
                 heart.classList.add("heart");
-                heart.innerHTML = "❤️";
+                heart.innerHTML = items[Math.floor(Math.random() * items.length)];
                 heart.style.left = Math.random() * 100 + "vw";
-                heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+                heart.style.fontSize = "10px";
+                heart.style.color = Math.random() > 0.5 ? "#00ffcc" : "#ff0055";
+                heart.style.animationDuration = (Math.random() * 3 + 5) + "s";
                 document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 5000);
-            }, 300);
+                setTimeout(() => heart.remove(), 8000);
+            }, 500);
         }
 
-        function startSlideshow() {
-            let slides = document.querySelectorAll(".slideshow img");
-            let index = 0;
-            setInterval(() => {
-                slides[index].classList.remove("active");
-                slides[index].classList.add("last");
-
-                let prevIndex = index;
-                index = (index + 1) % slides.length;
-
-                slides[index].classList.remove("last");
-                slides[index].classList.add("active");
-
-                // Reset the previous slide position after transition
-                setTimeout(() => {
-                    slides[prevIndex].classList.remove("last");
-                }, 1000);
-            }, 3000);
-        }
-
-        let text = "Deha, on your birthday I just want to say... You are my peace, my happiness, my safe place, and my forever. Every day with you feels like a blessing I never want to lose. I promise to love you more with every heartbeat, to stand by you in every storm, and to choose you again and again. Happy Birthday, my everything. ❤️ – Arnab";
-
-        let i = 0;
-
+        let text = "Deha, initializing emotional_packet_v2.0... \n\nEvery day with you feels like a perfectly executed sequence of happiness. You are the only person who has the root access to my heart, and frankly, I never want to revoke those permissions. \n\nI promise to stand by you through every system update life throws at us, to debug every problem together, and to love you with a priority level that is always MAX_URGENT. \n\nHappy Birthday, my beautiful human. ❤️ \n\n– Arnab (Uplink Securely Established)";
+        let textIdx = 0;
         function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("typewriter").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 40);
+            if (textIdx < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(textIdx);
+                textIdx++;
+                setTimeout(typeWriter, 30);
+            } else {
+                document.getElementById("giftBtn").classList.remove("hidden");
             }
         }
 
-        function confettiEffect() {
+        function startConfetti() {
             const canvas = document.getElementById("confetti");
             const ctx = canvas.getContext("2d");
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-
+            const colors = ['#00ffcc', '#ff0055', '#ffffff'];
             let pieces = [];
-            for (let i = 0; i < 150; i++) {
-                pieces.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    r: Math.random() * 6 + 2,
-                    d: Math.random() * canvas.height
-                });
+            for (let i = 0; i < 100; i++) {
+                pieces.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, size: Math.random() * 4 + 2, color: colors[Math.floor(Math.random() * colors.length)], speedY: Math.random() * 2 + 1 });
             }
-
             function draw() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = "white";
-                ctx.beginPath();
-                for (let i = 0; i < pieces.length; i++) {
-                    let p = pieces[i];
-                    ctx.moveTo(p.x, p.y);
-                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
-                }
-                ctx.fill();
-                update();
+                pieces.forEach(p => {
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(p.x, p.y, p.size, p.size);
+                    p.y += p.speedY; if (p.y > canvas.height) p.y = -10;
+                });
+                requestAnimationFrame(draw);
             }
-
-            function update() {
-                for (let i = 0; i < pieces.length; i++) {
-                    let p = pieces[i];
-                    p.y += Math.cos(p.d) + 1;
-                    if (p.y > canvas.height) {
-                        p.y = 0;
-                        p.x = Math.random() * canvas.width;
-                    }
-                }
-            }
-
-            setInterval(draw, 20);
+            draw();
         }
 
-    </script>
+        document.getElementById("giftBtn").addEventListener("click", function () {
+            alert("HEART_OS: SYSTEM OVERLOAD! ERROR: LOVE_TOO_MUCH \n\nHappy Birthday Deha! ❤️");
+        });
 
+    </script>
 </body>
 
 </html>
